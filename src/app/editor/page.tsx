@@ -1032,7 +1032,7 @@ export default function EditorPage() {
     if (!canvas) return;
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
-      canvas.bringToFront(activeObject);
+      activeObject.bringToFront();
       canvas.renderAll();
     }
   };
@@ -1041,7 +1041,7 @@ export default function EditorPage() {
     if (!canvas) return;
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
-      canvas.sendToBack(activeObject);
+      activeObject.sendToBack();
       canvas.renderAll();
     }
   };
