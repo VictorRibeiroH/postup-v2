@@ -3406,8 +3406,8 @@ export default function EditorPage() {
               </Button>
               <Button
                 onClick={() => {
-                  if (!fabricCanvas) return;
-                  const activeObj = fabricCanvas.getActiveObject();
+                  if (!canvas) return;
+                  const activeObj = canvas.getActiveObject();
                   if (activeObj && activeObj.type === 'image') {
                     adjustCanvasToImage(activeObj as fabric.FabricImage);
                   } else {
