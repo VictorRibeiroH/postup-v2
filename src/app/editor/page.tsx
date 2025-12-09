@@ -1515,7 +1515,12 @@ export default function EditorPage() {
         textAlign: 'center',
         originX: 'center',
         originY: 'center',
-        shadow: 'rgba(0,0,0,0.2) 3px 3px 10px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.2)',
+          blur: 10,
+          offsetX: 3,
+          offsetY: 3,
+        }),
       });
       
       const subtitle = new fabric.IText('Parabéns, [NOME]!', {
@@ -1638,7 +1643,12 @@ export default function EditorPage() {
         originX: 'center',
         originY: 'center',
         lineHeight: 0.9,
-        shadow: 'rgba(255,255,255,0.3) 0px 0px 30px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(255,255,255,0.3)',
+          blur: 30,
+          offsetX: 0,
+          offsetY: 0,
+        }),
       });
       
       const discount = new fabric.IText('ATÉ 70% OFF', {
@@ -1684,7 +1694,12 @@ export default function EditorPage() {
         ry: 40,
         originX: 'center',
         originY: 'center',
-        shadow: 'rgba(0,0,0,0.3) 0px 15px 50px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.3)',
+          blur: 50,
+          offsetX: 0,
+          offsetY: 15,
+        }),
       });
       
       const badge = new fabric.Circle({
@@ -1696,7 +1711,12 @@ export default function EditorPage() {
         strokeWidth: 12,
         originX: 'center',
         originY: 'center',
-        shadow: 'rgba(0,0,0,0.3) 0px 10px 30px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.3)',
+          blur: 30,
+          offsetX: 0,
+          offsetY: 10,
+        }),
       });
       
       const percent = new fabric.IText('50%', {
@@ -1788,7 +1808,12 @@ export default function EditorPage() {
         originX: 'center',
         originY: 'center',
         lineHeight: 1,
-        shadow: 'rgba(0,0,0,0.4) 5px 5px 15px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.4)',
+          blur: 15,
+          offsetX: 5,
+          offsetY: 5,
+        }),
       });
       
       const flashBox = new fabric.Rect({
@@ -1801,7 +1826,12 @@ export default function EditorPage() {
         ry: 20,
         originX: 'center',
         originY: 'center',
-        shadow: 'rgba(0,0,0,0.3) 0px 10px 40px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.3)',
+          blur: 40,
+          offsetX: 0,
+          offsetY: 10,
+        }),
       });
       
       const discount = new fabric.IText('ATÉ 80% DE DESCONTO', {
@@ -2268,7 +2298,12 @@ export default function EditorPage() {
         fontFamily: 'Impact',
         fontWeight: 'bold',
         lineHeight: 1.1,
-        shadow: 'rgba(0,0,0,0.3) 5px 5px 10px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.3)',
+          blur: 10,
+          offsetX: 5,
+          offsetY: 5,
+        }),
       });
       
       const subtitle = new fabric.IText('Soluções digitais para sua empresa', {
@@ -2358,7 +2393,12 @@ export default function EditorPage() {
         fill: '#FFFFFF',
         rx: 20,
         ry: 20,
-        shadow: 'rgba(0,0,0,0.2) 0px 10px 30px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.2)',
+          blur: 30,
+          offsetX: 0,
+          offsetY: 10,
+        }),
       });
       
       const number = new fabric.IText('50K+', {
@@ -2413,7 +2453,12 @@ export default function EditorPage() {
         fontFamily: 'Impact',
         fontWeight: 'bold',
         lineHeight: 0.95,
-        shadow: 'rgba(0,0,0,0.3) 3px 3px 8px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.3)',
+          blur: 8,
+          offsetX: 3,
+          offsetY: 3,
+        }),
       });
       
       const subtitle = new fabric.IText('Simples e rápida de fazer', {
@@ -2488,7 +2533,12 @@ export default function EditorPage() {
         textAlign: 'center',
         originX: 'center',
         originY: 'center',
-        shadow: 'rgba(0,0,0,0.5) 0px 5px 20px',
+        shadow: new fabric.Shadow({
+          color: 'rgba(0,0,0,0.5)',
+          blur: 20,
+          offsetX: 0,
+          offsetY: 5,
+        }),
       });
       
       canvas.add(circle1, circle2, circle3, title);
@@ -2839,7 +2889,7 @@ export default function EditorPage() {
                     >
                       <div className="absolute inset-0 bg-gray-800 p-2 flex flex-col items-center justify-center">
                         <div className="text-white text-[9px] italic text-center leading-tight">
-                          "O sucesso é<br/>a soma de<br/>pequenos<br/>esforços"
+                          &quot;O sucesso é<br/>a soma de<br/>pequenos<br/>esforços&quot;
                         </div>
                       </div>
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
