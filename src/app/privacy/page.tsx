@@ -1,7 +1,18 @@
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
+
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <Link 
+          href="/dashboard" 
+          className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 mb-6 font-medium transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Voltar ao Dashboard
+        </Link>
+        
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
             Política de Privacidade

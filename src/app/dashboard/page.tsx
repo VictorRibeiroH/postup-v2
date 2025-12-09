@@ -318,6 +318,31 @@ export default function DashboardPage() {
 
         {/* Coming Soon Section - Removed as features are now implemented */}
       </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-12">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-600">
+              © 2025 PostUp. Todos os direitos reservados.
+            </p>
+            <div className="flex items-center gap-6">
+              <a 
+                href="/privacy" 
+                className="text-sm text-gray-600 hover:text-[#FF6400] transition-colors"
+              >
+                Política de Privacidade
+              </a>
+              <a 
+                href="/terms" 
+                className="text-sm text-gray-600 hover:text-[#FF6400] transition-colors"
+              >
+                Termos de Serviço
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

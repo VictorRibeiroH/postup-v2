@@ -1,7 +1,18 @@
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
+
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <Link 
+          href="/dashboard" 
+          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-6 font-medium transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Voltar ao Dashboard
+        </Link>
+        
         <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
           <h1 className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Termos de Serviço
@@ -141,7 +152,7 @@ export default function TermsPage() {
                 8. Limitação de Responsabilidade
               </h2>
               <p className="mb-3">
-                O PostUp é fornecido <strong>"como está"</strong> e <strong>"conforme disponível"</strong>. 
+                O PostUp é fornecido <strong>&quot;como está&quot;</strong> e <strong>&quot;conforme disponível&quot;</strong>. 
                 Não nos responsabilizamos por:
               </p>
               <ul className="list-disc pl-6 space-y-2">

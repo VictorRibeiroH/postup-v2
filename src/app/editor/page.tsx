@@ -651,7 +651,7 @@ export default function EditorPage() {
       setFontFamily(font);
       setFontSearchInput(font);
       setTextAlign(textObj.textAlign || "left");
-      setFontWeight(textObj.fontWeight || "normal");
+      setFontWeight(String(textObj.fontWeight || "normal"));
       setFontStyle(textObj.fontStyle || "normal");
       setTextDecoration(textObj.underline ? "underline" : "");
     } else {
