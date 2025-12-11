@@ -10,6 +10,7 @@ import { differenceInDays, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import ArtesGallery from "@/components/dashboard/ArtesGallery";
 import ScheduleCalendar from "@/components/dashboard/ScheduleCalendar";
+import SchedulePostModal from "@/components/dashboard/SchedulePostModal";
 
 type UserProfile = {
   full_name: string;
@@ -34,6 +35,7 @@ export default function DashboardPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [loading, setLoading] = useState(true);
+  const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
 
   const loadUserProfile = async () => {
     try {
@@ -61,7 +63,7 @@ export default function DashboardPage() {
       
       // Load plan name
       let planName = data.plan_id;
-      if (data.plan_id) {
+      if (data.plan_id && data.plan_id.length === 36) { // UUID tem 36 caracteres
         const { data: planData } = await supabase
           .from("plans")
           .select("name")
@@ -296,12 +298,14 @@ export default function DashboardPage() {
                 Agendamentos
               </h3>
               <p className="text-sm text-gray-600 mb-4">
-                Gerencie seus posts agendados
+                Agende posts nas suas redes sociais
               </p>
-              <p className="text-2xl font-bold text-blue-600">
-                {profile.artes_used}
-              </p>
-              <p className="text-xs text-gray-500">posts agendados</p>
+              <Button 
+                onClick={() => setScheduleModalOpen(true)}
+                className="w-full bg-blue-600 hover:bg-blue-700"
+              >
+                Agendar Post
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -313,7 +317,7 @@ export default function DashboardPage() {
 
         {/* Schedule Calendar */}
         <div className="mb-8">
-          <ScheduleCalendar />
+          <ScheduleCalendar onScheduleClick={() => setScheduleModalOpen(true)} />
         </div>
 
         {/* Coming Soon Section - Removed as features are now implemented */}
@@ -343,6 +347,15 @@ export default function DashboardPage() {
           </div>
         </div>
       </footer>
+
+      {/* Schedule Post Modal */}
+      <SchedulePostModal 
+        open={scheduleModalOpen} 
+        onClose={() => setScheduleModalOpen(false)}
+        onSuccess={() => {
+          loadUserProfile();
+        }}
+      />
     </div>
   );
 }

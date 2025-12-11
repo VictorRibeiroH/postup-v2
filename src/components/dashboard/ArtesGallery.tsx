@@ -8,6 +8,7 @@ import { ImageIcon, Download, Trash2, Calendar, Pencil } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "sonner";
+import SchedulePostModal from "./SchedulePostModal";
 
 interface Arte {
   id: string;
@@ -21,6 +22,8 @@ interface Arte {
 export default function ArtesGallery() {
   const [artes, setArtes] = useState<Arte[]>([]);
   const [loading, setLoading] = useState(true);
+  const [scheduleModalOpen, setScheduleModalOpen] = useState(false);
+  const [selectedArteId, setSelectedArteId] = useState<string | null>(null);
 
   useEffect(() => {
     loadArtes();
@@ -177,7 +180,10 @@ export default function ArtesGallery() {
                   <Button
                     size="sm"
                     variant="secondary"
-                    onClick={() => (window.location.href = "/editor?arte=" + arte.id)}
+                    onClick={() => {
+                      setSelectedArteId(arte.id);
+                      setScheduleModalOpen(true);
+                    }}
                     className="bg-white hover:bg-gray-100"
                     title="Agendar postagem"
                   >
@@ -214,6 +220,19 @@ export default function ArtesGallery() {
           ))}
         </div>
       </CardContent>
+
+      {/* Schedule Post Modal */}
+      <SchedulePostModal 
+        open={scheduleModalOpen} 
+        onClose={() => {
+          setScheduleModalOpen(false);
+          setSelectedArteId(null);
+        }}
+        onSuccess={() => {
+          loadArtes();
+        }}
+        preSelectedArteId={selectedArteId}
+      />
     </Card>
   );
 }

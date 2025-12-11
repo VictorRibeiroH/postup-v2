@@ -12,7 +12,7 @@ import { toast } from "sonner";
 interface ScheduledPost {
   id: string;
   title: string;
-  scheduled_date: string;
+  scheduled_for: string;
   platform: string;
   status: string;
   arte_id?: string;
@@ -22,7 +22,11 @@ interface ScheduledPost {
   };
 }
 
-export default function ScheduleCalendar() {
+interface ScheduleCalendarProps {
+  onScheduleClick?: () => void;
+}
+
+export default function ScheduleCalendar({ onScheduleClick }: ScheduleCalendarProps = {}) {
   const [posts, setPosts] = useState<ScheduledPost[]>([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -49,15 +53,19 @@ export default function ScheduleCalendar() {
           )
         `)
         .eq("user_id", user.id)
-        .gte("scheduled_date", start.toISOString())
-        .lte("scheduled_date", end.toISOString())
-        .order("scheduled_date", { ascending: true });
+        .gte("scheduled_for", start.toISOString())
+        .lte("scheduled_for", end.toISOString())
+        .order("scheduled_for", { ascending: true });
 
-      if (error) throw error;
+      if (error && error.message) {
+        console.error("Erro ao carregar posts:", error);
+        toast.error("Erro ao carregar agendamentos");
+        return;
+      }
+      
       setPosts(data || []);
     } catch (error) {
-      console.error("Erro ao carregar posts:", error);
-      toast.error("Erro ao carregar agendamentos");
+      console.error("Erro inesperado ao carregar posts:", error);
     } finally {
       setLoading(false);
     }
@@ -74,7 +82,7 @@ export default function ScheduleCalendar() {
 
   const getPostsForDate = (date: Date) => {
     return posts.filter((post) =>
-      isSameDay(new Date(post.scheduled_date), date)
+      isSameDay(new Date(post.scheduled_for), date)
     );
   };
 
@@ -129,7 +137,7 @@ export default function ScheduleCalendar() {
             </p>
           </div>
           <Button
-            onClick={() => (window.location.href = "/editor")}
+            onClick={onScheduleClick}
             className="bg-[#FF6400] hover:bg-[#e55a00]"
           >
             <Plus className="w-4 h-4 mr-2" />
@@ -234,7 +242,7 @@ export default function ScheduleCalendar() {
                   <div className="flex-1">
                     <p className="font-medium text-gray-900">{post.title}</p>
                     <p className="text-xs text-gray-500">
-                      {format(new Date(post.scheduled_date), "HH:mm")}
+                      {format(new Date(post.scheduled_for), "HH:mm")}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
